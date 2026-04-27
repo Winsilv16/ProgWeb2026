@@ -26,17 +26,6 @@ SECRET_KEY = "django-insecure-54fad0#zfi+qg=b7or02!eju#a9fze3p*+4+dzc!s@701%2=4y
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
-
-CSRF_TRUSTED_ORIGINS = [
-    "https://*.github.dev",
-    "https://*.app.github.dev",
-    "http://localhost:8000",
-    "https://localhost:8000",
-    "http://localhost:8001",
-    "https://localhost:8001",
-]
-
 
 # Application definition
 
@@ -134,3 +123,14 @@ STATIC_URL = "static/"
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+
+ALLOWED_HOSTS = ['*']
+
+CSRF_TRUSTED_ORIGINS = [
+    'https://*.app.github.dev',
+    'https://*.preview.app.github.dev',
+    'http://localhost:8002',
+    'https://localhost:8002'
+]
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
