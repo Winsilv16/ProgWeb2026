@@ -2,12 +2,38 @@ from django.db import models
 from .Categoria import Categoria
 from .Fabricante import Fabricante
 
+
 class Produto(models.Model):
-    Produto = models.CharField(null=False, max_length=100)
-    destaque = models.BooleanField(default=True)
-    promocao = models.BooleanField(default=True)
-    msgPromocao = models.CharField(null=True, max_length=100)
-    preco = models.DecimalField(max_digits=8, decimal_places=2)
+    Produto = models.CharField(
+        max_length=100,
+        null=False,
+        blank=False
+    )
+
+    destaque = models.BooleanField(
+        default=True
+    )
+
+    promocao = models.BooleanField(
+        default=True
+    )
+
+    msgPromocao = models.CharField(
+        max_length=100,
+        null=True,
+        blank=True
+    )
+
+    preco = models.DecimalField(
+        max_digits=8,
+        decimal_places=2
+    )
+
+    imagem = models.ImageField(
+        upload_to='produtos/',
+        null=True,
+        blank=True
+    )
 
     categoria = models.ForeignKey(
         Categoria,
@@ -23,8 +49,13 @@ class Produto(models.Model):
         on_delete=models.SET_NULL
     )
 
-    criado_em = models.DateTimeField(auto_now_add=True)
-    alterado_em = models.DateTimeField(auto_now=True)
+    criado_em = models.DateTimeField(
+        auto_now_add=True
+    )
+
+    alterado_em = models.DateTimeField(
+        auto_now=True
+    )
 
     def __str__(self):
-        return '{}'.format(self.Produto)
+        return self.Produto
