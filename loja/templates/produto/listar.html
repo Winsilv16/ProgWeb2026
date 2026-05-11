@@ -1,0 +1,12 @@
+<h1>Lista de Produtos</h1>
+
+{% for produto in produtos %}
+    <div>
+        <h2>{{ produto.Produto }}</h2>
+        <p>Preço: R$ {{ produto.preco }}</p>
+
+        {% if produto.imagem %}
+            <img src="{{ produto.imagem.url }}" width="200">
+        {% endif %}
+    </div>
+{% endfor %}
