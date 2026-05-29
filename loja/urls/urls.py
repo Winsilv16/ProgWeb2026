@@ -1,6 +1,17 @@
-from django.urls import path
-from .views.ProdutoView import listar_produtos
+from django.contrib import admin
+from django.urls import path, include
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
-    path('', listar_produtos),
+
+    path('admin/', admin.site.urls),
+
+    path('produto/', include('loja.urls.ProdutoUrls')),
+
 ]
+
+urlpatterns += static(
+    settings.MEDIA_URL,
+    document_root=settings.MEDIA_ROOT
+)

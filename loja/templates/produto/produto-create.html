@@ -1,0 +1,62 @@
+<form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+
+    <div class="row mt-2">
+
+        <label class="col-md-2">
+            Categoria
+        </label>
+
+        <select name="CategoriaFk">
+
+            <option value="-1">-----</option>
+
+            {% for cate in categorias %}
+
+                <option value="{{cate.id}}">
+                    {{cate.Categoria}}
+                </option>
+
+            {% endfor %}
+
+        </select>
+
+    </div>
+
+    <div class="row mt-2">
+
+        <label class="col-md-2">
+            Fabricante
+        </label>
+
+        <select name="FabricanteFk">
+
+            <option value="-1">-----</option>
+
+            {% for fabri in fabricantes %}
+
+                <option value="{{fabri.id}}">
+                    {{fabri.Fabricante}}
+                </option>
+
+            {% endfor %}
+
+        </select>
+
+    </div>
+
+    <div class="row mt-2">
+
+        <label class="col-md-2">
+            Imagem
+        </label>
+
+        <input type="file" name="imagem">
+
+    </div>
+
+    <button type="submit" class="btn btn-success mt-3">
+        Salvar
+    </button>
+
+</form>
