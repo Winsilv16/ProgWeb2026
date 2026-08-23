@@ -1,9 +1,14 @@
 from django.contrib import admin
+from .models import *
 
-from .models.Fabricante import Fabricante
-from .models.Categoria import Categoria
-from .models.Produto import Produto
+class FabricanteAdmin(admin.ModelAdmin):
+    pass
 
-admin.site.register(Fabricante)
+admin.site.register(Fabricante, FabricanteAdmin)
 admin.site.register(Categoria)
-admin.site.register(Produto)
+
+class ProdutoAdmin(admin.ModelAdmin):
+    pass
+
+admin.site.register(Produto, ProdutoAdmin)
+admin.site.register(Usuario)
