@@ -13,6 +13,10 @@ urlpatterns = [
     path('produto/', include('loja.urls.ProdutoUrls')),
 
     path('usuario/', include('loja.urls.UsuarioUrls')),
+
+    path('categoria/', include('loja.urls.CategoriaUrls')),
+    
+    path('fabricante/', include('loja.urls.FabricanteUrls')),
 ]
 
 
