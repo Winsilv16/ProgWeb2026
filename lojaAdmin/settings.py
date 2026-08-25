@@ -112,9 +112,17 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 CSRF_TRUSTED_ORIGINS = [
     'https://*.app.github.dev',
     'https://*.preview.app.github.dev',
+    'https://*.github.dev',
+    'http://127.0.0.1:8000',
     'http://127.0.0.1:8001',
+    'http://localhost:8000',
+    'http://localhost:8001',
 ]
 
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 LOGIN_URL = '/usuario/login/'
+LOGIN_URL = '/login'
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_URL = '/logout'
+LOGOUT_REDIRECT_URL = '/login'

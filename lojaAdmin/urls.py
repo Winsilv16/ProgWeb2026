@@ -10,12 +10,14 @@ urlpatterns = [
 
     path('', include('loja.urls.HomeUrls')),
 
+    path('', include('loja.urls.AuthUrls')),
+
     path('produto/', include('loja.urls.ProdutoUrls')),
 
     path('usuario/', include('loja.urls.UsuarioUrls')),
 
     path('categoria/', include('loja.urls.CategoriaUrls')),
-    
+
     path('fabricante/', include('loja.urls.FabricanteUrls')),
 ]
 
