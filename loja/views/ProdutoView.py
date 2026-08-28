@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import login_required  # Import do decorator
 from loja.models import Produto, Fabricante, Categoria
 from django.utils import timezone
 from django.core.files.storage import FileSystemStorage
@@ -101,6 +102,7 @@ def create_produto_view(request):
     )
 
 
+@login_required  # Protege a view de edição
 def edit_produto_view(request, id):
 
     produto = Produto.objects.get(id=id)

@@ -1,26 +1,17 @@
 from django.contrib import admin
 from django.urls import path, include
-
 from django.conf import settings
 from django.conf.urls.static import static
 
-
 urlpatterns = [
     path('admin/', admin.site.urls),
-
     path('', include('loja.urls.HomeUrls')),
-
     path('', include('loja.urls.AuthUrls')),
-
     path('produto/', include('loja.urls.ProdutoUrls')),
-
     path('usuario/', include('loja.urls.UsuarioUrls')),
-
     path('categoria/', include('loja.urls.CategoriaUrls')),
-
     path('fabricante/', include('loja.urls.FabricanteUrls')),
 ]
-
 
 if settings.DEBUG:
     urlpatterns += static(

@@ -3,25 +3,35 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from loja.forms.AuthForm import LoginForm, RegisterForm
 
+
 def login_view(request):
-    loginForm = LoginForm()
     message = None
 
     if request.user.is_authenticated:
         return redirect('/')
 
     if request.method == 'POST':
-        username = request.POST['username']
-        password = request.POST['password']
+        # Instancia o formulário já com os dados do POST
         loginForm = LoginForm(request.POST)
 
         if loginForm.is_valid():
+            # Obtém os dados validados do formulário
+            username = loginForm.cleaned_data.get('username')
+            password = loginForm.cleaned_data.get('password')
+
             user = authenticate(username=username, password=password)
             if user is not None:
                 login(request, user)
+                
+                # Resgata a rota protegida enviada via URL (GET) ou via campo oculto (POST)
+                _next = request.GET.get('next') or request.POST.get('next')
+                if _next:
+                    return redirect(_next)
                 return redirect('/')
             else:
                 message = {'type': 'danger', 'text': 'Dados de usuário incorretos'}
+    else:
+        loginForm = LoginForm()
 
     context = {
         'form': loginForm, 
@@ -35,19 +45,19 @@ def login_view(request):
 
 
 def register_view(request):
-    registerForm = RegisterForm()
     message = None
 
     if request.user.is_authenticated:
         return redirect('/')
 
     if request.method == 'POST':
-        username = request.POST['username']
-        email = request.POST['email']
-        password = request.POST['password']
         registerForm = RegisterForm(request.POST)
 
         if registerForm.is_valid():
+            username = registerForm.cleaned_data.get('username')
+            email = registerForm.cleaned_data.get('email')
+            password = registerForm.cleaned_data.get('password')
+
             verifyUsername = User.objects.filter(username=username).first()
             verifyEmail = User.objects.filter(email=email).first()
 
@@ -61,6 +71,8 @@ def register_view(request):
                     message = {'type': 'success', 'text': 'Conta criada com sucesso!'}
                 else:
                     message = {'type': 'danger', 'text': 'Um erro ocorreu ao tentar criar o usuário.'}
+    else:
+        registerForm = RegisterForm()
 
     context = {
         'form': registerForm, 

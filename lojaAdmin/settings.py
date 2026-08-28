@@ -1,16 +1,13 @@
 import os
-
 from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent
-
 
 SECRET_KEY = "django-insecure-54fad0#zfi+qg=b7or02!eju#a9fze3p*+4+dzc!s@701%2=4y"
 
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
-
 
 
 INSTALLED_APPS = [
@@ -24,7 +21,6 @@ INSTALLED_APPS = [
 ]
 
 
-
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
@@ -36,9 +32,7 @@ MIDDLEWARE = [
 ]
 
 
-
 ROOT_URLCONF = "lojaAdmin.urls"
-
 
 
 TEMPLATES = [
@@ -58,7 +52,6 @@ TEMPLATES = [
 ]
 
 
-
 WSGI_APPLICATION = "lojaAdmin.wsgi.application"
 
 
@@ -68,7 +61,6 @@ DATABASES = {
         "NAME": BASE_DIR / "db.sqlite3",
     }
 }
-
 
 
 AUTH_PASSWORD_VALIDATORS = [
@@ -87,7 +79,6 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
-
 LANGUAGE_CODE = "pt-br"
 
 TIME_ZONE = "America/Sao_Paulo"
@@ -97,10 +88,7 @@ USE_I18N = True
 USE_TZ = True
 
 
-
 STATIC_URL = "static/"
-
-
 
 MEDIA_URL = "/media/"
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
@@ -113,15 +101,15 @@ CSRF_TRUSTED_ORIGINS = [
     'https://*.app.github.dev',
     'https://*.preview.app.github.dev',
     'https://*.github.dev',
-    'http://127.0.0.1:8000',
-    'http://127.0.0.1:8001',
-    'http://localhost:8000',
-    'http://localhost:8001',
+    'http://127.0.0.1:*',
+    'http://localhost:*',
 ]
 
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+CSRF_COOKIE_SAMESITE = 'Lax'
+SESSION_COOKIE_SAMESITE = 'Lax'
 
-LOGIN_URL = '/usuario/login/'
+
 LOGIN_URL = '/login'
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_URL = '/logout'
