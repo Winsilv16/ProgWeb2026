@@ -1,0 +1,36 @@
+<h2>Meu Carrinho de Compras</h2>
+
+{% if itens %}
+  <table>
+    <thead>
+      <tr>
+        <th>Produto</th>
+        <th>Quantidade</th>
+        <th>Preço Unitário</th>
+        <th>Total do Item</th>
+        <th>Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for item in itens %}
+        <tr>
+          <td>{{ item.produto.nome }}</td>
+          <td>{{ item.quantidade }}</td>
+          <td>R$ {{ item.preco }}</td>
+          <td>R$ {{ item.total }}</td>
+          <td>
+            <form action="{% url 'remover_carrinhoitem' item.id %}" method="POST">
+              {% csrf_token %}
+              <button type="submit">Remover</button>
+            </form>
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  <h3>Total Geral: R$ {{ carrinho.total }}</h3>
+  <a href="{% url 'confirmar_carrinho' %}">Finalizar Pedido</a>
+{% else %}
+  <p>Seu carrinho está vazio.</p>
+{% endif %}

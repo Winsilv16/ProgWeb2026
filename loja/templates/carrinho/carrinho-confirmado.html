@@ -1,0 +1,7 @@
+<h2>Pedido Confirmado com Sucesso!</h2>
+<p>Obrigado pela sua compra, {{ request.user.username }}.</p>
+<p>Código do Pedido: #{{ carrinho.id }}</p>
+<p>Data de Confirmação: {{ carrinho.confirmado_em|date:"d/m/Y H:i" }}</p>
+<p>Valor Total: R$ {{ carrinho.total }}</p>
+
+<a href="/">Voltar à Loja</a>
